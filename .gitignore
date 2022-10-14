@@ -1,0 +1,6 @@
+.gdb_history
+host
+injector
+peda-session*
+shellcode
+*.o
