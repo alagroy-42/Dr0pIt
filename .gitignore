@@ -3,4 +3,6 @@ host
 injector
 peda-session*
 shellcode
+.vscode
+DropIt
 *.o

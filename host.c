@@ -8,6 +8,7 @@ int main()
 
     while (1) {
         printf("Hello from host process !\n");
+        fflush(NULL);
         sleep(2);
     }
     return (EXIT_SUCCESS);
