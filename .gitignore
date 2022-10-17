@@ -4,5 +4,6 @@ injector
 peda-session*
 shellcode
 .vscode
-DropIt
+Dr0pIt
 *.o
+.objs
