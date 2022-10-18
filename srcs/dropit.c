@@ -2,9 +2,10 @@
 
 int     main(int ac, char **av)
 {
-    t_dropit    dropit;
+    t_config    config = {};
 
-    if (parse_opt(ac, av, &dropit))
+    if (parse_opt(ac, av, &config) == -1)
         return (EXIT_FAILURE);
+    freeaddrinfo(config.host_infos);
     return (EXIT_SUCCESS);
 }
