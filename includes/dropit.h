@@ -21,6 +21,10 @@
 
 #define NR_memfd_create         319
 
+# define GREEN "\033[0;32m"
+# define RED "\033[0;31m"
+# define WHITE "\033[0;0m"
+
 typedef struct user_regs_struct t_regs;
 typedef struct sockaddr_in      t_sockaddr_in;
 typedef struct sockaddr         t_sockaddr;
@@ -38,9 +42,11 @@ typedef struct                  s_config
 {
     t_protocol      protocol;
     t_addrinfo      *host_infos;
+    char            *remote_file_name;
 }                               t_config;
 
 int                             parse_opt(int ac, char **av, t_config *config);
+int                             download_malware(t_config config);
 
 
 #endif

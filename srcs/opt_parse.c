@@ -2,8 +2,9 @@
 
 static int          usage_error(char *prog_name)
 {
-    dprintf(2, "Usage:\n\t%1$s  -h\n\t%1$s [-p proto] host port\n", prog_name);
+    dprintf(2, "Usage:\n\t%1$s  -h\n\t%1$s [-p proto -f file] host port\n", prog_name);
     dprintf(2, "Options:\n\t-h: displays help\n\t-p: specify protocol in [tcp, http]\n");
+    dprintf(2, "\t-f: specify the file to retreive on the HTTP server (mandatory if protocol is http)\n");
     return (-1);
 }
 
@@ -45,9 +46,13 @@ int             parse_opt(int ac, char **av, t_config *config)
 {
     int     opt;
 
-    while ((opt = getopt(ac, av, "hp:")) != -1) {
+    while ((opt = getopt(ac, av, "hp:f:")) != -1) {
         if (opt == 'p') {
             if ((config->protocol = get_proto(optarg)) == PROTO_UNKNOWN)
+                return (-1);
+        }
+        else if (opt == 'f') {
+            if (!(config->remote_file_name = strdup(optarg)))
                 return (-1);
         }
         else if (opt == 'h')
@@ -55,5 +60,9 @@ int             parse_opt(int ac, char **av, t_config *config)
     }
     if (optind != ac - 2 || parse_remote(av, optind, config) == -1)
         return (usage_error(av[0]));
+    if (config->protocol == PROTO_HTTP && !config->remote_file_name) {
+        dprintf(2, "The -f argument has to be used with http\n");
+        return (-1);
+    }
     return (EXIT_SUCCESS);
 }
