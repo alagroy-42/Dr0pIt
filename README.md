@@ -25,5 +25,8 @@ make
     - HTTPS ?
 - Execution:
     - Fileless execution
-    - Process injection
+    - Process injection:
+        - ptrace
+        - shared library
+- Argument support for payload
 - Persistence

