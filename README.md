@@ -11,13 +11,16 @@ make
 
 ## Usage
 
-`./Dr0pIt -h host -p port`
+`./Dr0pIt [-h] [-p proto] [-f file] host port`
+- `-h`: Displays help
+- `-p`: Specify the protocol to retreive the file. The supported protocols for now are HTTP and raw TCP. Default protocol is TCP.
+- `-f`: Specify the resource to fetch on the host if the protocol is HTTP
+- `host`: A net node to connect to, it can be an IP or a domain.
+- `port`: The port to connect to, it can be a port number or a service name
 
 ## Todo
 
 - Protocols:
-    - TCP
-    - HTTP
     - FTP ?
     - HTTPS ?
 - Execution:
